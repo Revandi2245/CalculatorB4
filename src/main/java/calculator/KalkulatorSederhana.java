@@ -38,15 +38,11 @@ public class KalkulatorSederhana {
     }
 
     // Fitur untuk menampilkan pilihan operator
-    public static void pilihOperator() {
+    public static char pilihOperator(Scanner scanner) {
         System.out.print("Pilih Operator : (+, -, /, *): ");
-    }
-
-    // Fitur untuk membaca operator dari input
-    public static char inputOperator(Scanner scanner) {
-        pilihOperator();
         return scanner.next().charAt(0);
     }
+
 
     // Fitur untuk menghitung berdasarkan operator
     public static double hitung(double angkaPertama, double angkaKedua, char operator) {
@@ -79,7 +75,7 @@ public class KalkulatorSederhana {
 
         double angkaPertama = inputAngkaPertama(scanner);
         double angkaKedua = inputAngkaKedua(scanner);
-        char operator = inputOperator(scanner);
+        char operator = pilihOperator(scanner);
 
 
         tampilkanHasil(angkaPertama, angkaKedua, operator);
