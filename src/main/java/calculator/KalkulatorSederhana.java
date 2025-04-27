@@ -2,17 +2,14 @@ import java.util.Scanner;
 
 public class KalkulatorSederhana {
 
-    // Fitur untuk pertambahan
     public static double tambah(double a, double b) {
         return a + b;
     }
 
-    // Fitur untuk pengurangan
     public static double kurang(double a, double b) {
         return a - b;
     }
 
-    // Fitur untuk pembagian
     public static double bagi(double a, double b) {
         if (b == 0) {
             throw new ArithmeticException("Tidak bisa membagi dengan nol");
@@ -20,31 +17,48 @@ public class KalkulatorSederhana {
         return a / b;
     }
 
-    // Fitur untuk perkalian
     public static double kali(double a, double b) {
         return a * b;
     }
 
-    // Fitur untuk memasukkan angka pertama
-    public static double inputAngkaPertama(Scanner scanner) {
-        System.out.print("Masukkan angka pertama: ");
-        return scanner.nextDouble();
+    public static boolean validasiAngka(Scanner scanner) {
+        if (!scanner.hasNextDouble()) {
+            System.out.println("Error: Masukkan harus berupa angka!");
+            scanner.next(); // Clear invalid input
+            return false;
+        }
+        return true;
     }
 
-    // Fitur untuk memasukkan angka kedua
-    public static double inputAngkaKedua(Scanner scanner) {
-        System.out.print("Masukkan angka kedua: ");
-        return scanner.nextDouble();
+    public static boolean validasiRentang(double angka) {
+        if (angka < -32768 || angka > 32767) {
+            System.out.println("Angka tidak valid! Angka harus berada dalam rentang -32,768 hingga 32,767.");
+            return false;
+        }
+        return true;
     }
 
-    // Fitur untuk menampilkan pilihan operator
+    public static double inputAngka(Scanner scanner, String angkaKe) {
+        double angka = 0;
+        boolean valid = false;
+        while (!valid) {
+            System.out.print("Masukkan angka " + angkaKe + ": ");
+            if (validasiAngka(scanner)) {
+                angka = scanner.nextDouble();
+                if (validasiRentang(angka)) {
+                    valid = true;
+                }
+            }
+        }
+        return angka;
+    }
+
     public static char pilihOperator(Scanner scanner) {
         System.out.print("Pilih Operator : (+, -, /, *): ");
         return scanner.next().charAt(0);
     }
 
-
-    // Fitur untuk menghitung berdasarkan operator
+  
     public static double hitung(double angkaPertama, double angkaKedua, char operator) {
         switch (operator) {
             case '+':
@@ -60,7 +74,6 @@ public class KalkulatorSederhana {
         }
     }
 
-    // Fitur untuk menampilkan hasil atau error
     public static void tampilkanHasil(double angkaPertama, double angkaKedua, char operator) {
         try {
             double hasil = hitung(angkaPertama, angkaKedua, operator);
@@ -73,8 +86,8 @@ public class KalkulatorSederhana {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double angkaPertama = inputAngkaPertama(scanner);
-        double angkaKedua = inputAngkaKedua(scanner);
+        double angkaPertama = inputAngka(scanner, "pertama");
+        double angkaKedua = inputAngka(scanner, "kedua");
         char operator = pilihOperator(scanner);
 
 
