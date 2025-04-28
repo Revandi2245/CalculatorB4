@@ -56,19 +56,18 @@ public class KalkulatorSederhana {
     public static char pilihOperator(Scanner scanner) {
         char operator = ' ';
         boolean valid = false;
-    
         do {
-            System.out.print("Pilih Operator : (+, -, /, *): ");
+            System.out.print("Pilih Operator : (+,-,/,*): ");
             String input = scanner.next();
             if (input.length() == 1) {
                 operator = input.charAt(0);
-                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') { 
                     valid = true;
                 } else {
-                    System.out.println("Error: Operator tidak valid. Harap masukkan +, -, *, atau /.");
+                    System.out.println("Error: Operator tidak valid.Harap masukkan +, -, *, atau /.");
                 }
             } else {
-                System.out.println("Error: Masukkan hanya satu karakter operator.");
+                System.out.println("Error: Harap masukkan 1 karakter operator.");
             }
         } while (!valid);
         return operator;
@@ -92,12 +91,8 @@ public class KalkulatorSederhana {
     }
 
     public static void tampilkanHasil(double angkaPertama, double angkaKedua, char operator) {
-        try {
             double hasil = hitung(angkaPertama, angkaKedua, operator);
             System.out.println("Hasil: " + hasil);
-        } catch (IllegalArgumentException | ArithmeticException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
     }
 
     public static void main(String[] args) {
