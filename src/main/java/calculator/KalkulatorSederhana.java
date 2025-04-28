@@ -54,9 +54,26 @@ public class KalkulatorSederhana {
     }
 
     public static char pilihOperator(Scanner scanner) {
-        System.out.print("Pilih Operator : (+, -, /, *): ");
-        return scanner.next().charAt(0);
+        char operator = ' ';
+        boolean valid = false;
+    
+        do {
+            System.out.print("Pilih Operator : (+, -, /, *): ");
+            String input = scanner.next();
+            if (input.length() == 1) {
+                operator = input.charAt(0);
+                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+                    valid = true;
+                } else {
+                    System.out.println("Error: Operator tidak valid. Harap masukkan +, -, *, atau /.");
+                }
+            } else {
+                System.out.println("Error: Masukkan hanya satu karakter operator.");
+            }
+        } while (!valid);
+        return operator;
     }
+    
 
   
     public static double hitung(double angkaPertama, double angkaKedua, char operator) {
