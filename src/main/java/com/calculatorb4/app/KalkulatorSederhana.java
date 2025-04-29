@@ -1,3 +1,5 @@
+package com.calculatorb4.app;
+
 import java.util.Scanner;
 
 public class KalkulatorSederhana {
@@ -9,18 +11,15 @@ public class KalkulatorSederhana {
     public static double kurang(double a, double b) {
         return a - b;
     }
-
     public static double bagi(double a, double b) {
         if (b == 0) {
             throw new ArithmeticException("Tidak bisa membagi dengan nol");
         }
         return a / b;
     }
-
     public static double kali(double a, double b) {
         return a * b;
     }
-
     public static boolean validasiAngka(Scanner scanner) {
         if (!scanner.hasNextDouble()) {
             System.out.println("Error: Masukkan harus berupa angka!");
@@ -61,7 +60,7 @@ public class KalkulatorSederhana {
             String input = scanner.next();
             if (input.length() == 1) {
                 operator = input.charAt(0);
-                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') { 
+                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
                     valid = true;
                 } else {
                     System.out.println("Error: Operator tidak valid.Harap masukkan +, -, *, atau /.");
@@ -72,9 +71,9 @@ public class KalkulatorSederhana {
         } while (!valid);
         return operator;
     }
-    
 
-  
+
+
     public static double hitung(double angkaPertama, double angkaKedua, char operator) {
         switch (operator) {
             case '+':
@@ -91,8 +90,8 @@ public class KalkulatorSederhana {
     }
 
     public static void tampilkanHasil(double angkaPertama, double angkaKedua, char operator) {
-            double hasil = hitung(angkaPertama, angkaKedua, operator);
-            System.out.println("Hasil: " + hasil);
+        double hasil = hitung(angkaPertama, angkaKedua, operator);
+        System.out.println("Hasil: " + hasil);
     }
 
     public static void main(String[] args) {
