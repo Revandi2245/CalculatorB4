@@ -56,19 +56,18 @@ public class KalkulatorSederhana {
 
     public static Character pilihOperator(Scanner scanner) {
         char operator = ' ';
-            System.out.print("Pilih Operator : (+,-,/,*): ");
-            String input = scanner.next();
-            if (input.length() != 1) {
-                System.out.println("Error: Inpur operator hanya menerima 1 input! ");
-                    return null;
-                } else {
-                operator = input.charAt(0);
-            }
-                if (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
-                    System.out.println("Error: Operator yang dimasukkan tidak valid!");
-                    return null;
-                } 
-                
+        System.out.print("Pilih Operator : (+,-,/,*): ");
+        String input = scanner.next();
+        if (input.length() != 1) {
+            System.out.println("Error: Input operator hanya menerima 1 input!");
+            return null;
+        } else {
+            operator = input.charAt(0);
+        }
+        if (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
+            System.out.println("Error: Operator yang dimasukkan tidak valid!");
+            return null;
+        }
         return operator;
     }
 
