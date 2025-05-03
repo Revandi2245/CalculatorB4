@@ -11,10 +11,10 @@ public class KalkulatorSederhana {
     public static double kurang(double a, double b) {
         return a - b;
     }
-    public static double bagi(double a, double b) {
+    public static Double bagi(double a, double b) {
         if (b == 0) {
             System.out.println("Error: Pembagian dengan nol tidak diperbolehkan!");
-            System.exit(1); // Keluar dari program jika pembagian dengan nol
+            return null;
         }
         return a / b;
     }
@@ -38,35 +38,35 @@ public class KalkulatorSederhana {
         return true;
     }
 
-    public static double inputAngka(Scanner scanner, String angkaKe) {
+    public static Double inputAngka(Scanner scanner, String angkaKe) {
         double angka = 0;
             System.out.print("Masukkan angka " + angkaKe + ": ");
             if (!validasiAngka(scanner)) {
-                System.exit(1); // Keluar dari program jika input tidak valid
+                return null;
             } else {
                 angka = scanner.nextDouble();
             }
                 if (!validasiRentang(angka)) {
-                    System.exit(1); // Keluar dari program jika diluar range
+                    return null;
                 }
             return angka;
         }
 
     
 
-    public static char pilihOperator(Scanner scanner) {
+    public static Character pilihOperator(Scanner scanner) {
         char operator = ' ';
             System.out.print("Pilih Operator : (+,-,/,*): ");
             String input = scanner.next();
             if (input.length() != 1) {
                 System.out.println("Error: Inpur operator hanya menerima 1 input! ");
-                System.exit(1); // Keluar dari program jika diluar range
-            } else {
+                    return null;
+                } else {
                 operator = input.charAt(0);
             }
                 if (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
                     System.out.println("Error: Operator yang dimasukkan tidak valid!");
-                    System.exit(1); 
+                    return null;
                 } 
                 
         return operator;
@@ -99,10 +99,14 @@ public class KalkulatorSederhana {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double angkaPertama = inputAngka(scanner, "pertama");
-        double angkaKedua = inputAngka(scanner, "kedua");
-        char operator = pilihOperator(scanner);
+        Double angkaPertama = inputAngka(scanner, "pertama");
+        if (angkaPertama == null) return;
 
+        Double angkaKedua = inputAngka(scanner, "kedua");
+        if (angkaKedua == null) return;
+
+        Character operator = pilihOperator(scanner);
+        if (operator == null) return;
 
         tampilkanHasil(angkaPertama, angkaKedua, operator);
     }

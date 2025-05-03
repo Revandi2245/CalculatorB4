@@ -1,28 +1,29 @@
 package com.calculatorb4.app;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+class KalkulatorSederhanaTest {
 
-public class KalkulatorSederhanaTest {
- 
     @Test
-    void ujiTambah(){
-        assertEquals(11, KalkulatorSederhana.tambah(7, 3));
+    void testTambah() {
+        assertEquals(10.0, KalkulatorSederhana.tambah(4.0, 6.0));
     }
 
     @Test
-    void ujiKurang(){
-        assertEquals(10, KalkulatorSederhana.kurang(15, 5));
+    void testKurang() {
+        assertEquals(2.0, KalkulatorSederhana.kurang(5.0, 3.0));
     }
 
     @Test
-    void ujiKali(){
-        assertEquals(10, KalkulatorSederhana.kali(2, 5));
+    void testKali() {
+        assertEquals(20.0, KalkulatorSederhana.kali(4.0, 5.0));
     }
 
-    @Test 
-    void ujiBagi(){
-        assertEquals(10, KalkulatorSederhana.bagi(20, 2));
+    @Test
+    void testBagiNormal() {
+        assertEquals(2.0, KalkulatorSederhana.bagi(10.0, 5.0));
     }
+
+
 }
