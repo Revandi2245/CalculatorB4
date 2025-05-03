@@ -13,7 +13,8 @@ public class KalkulatorSederhana {
     }
     public static double bagi(double a, double b) {
         if (b == 0) {
-            throw new ArithmeticException("Tidak bisa membagi dengan nol");
+            System.out.println("Error: Pembagian dengan nol tidak diperbolehkan!");
+            System.exit(1); // Keluar dari program jika pembagian dengan nol
         }
         return a / b;
     }
@@ -23,7 +24,7 @@ public class KalkulatorSederhana {
     public static boolean validasiAngka(Scanner scanner) {
         if (!scanner.hasNextDouble()) {
             System.out.println("Error: Masukkan harus berupa angka!");
-            scanner.next(); // Clear invalid input
+            scanner.next(); 
             return false;
         }
         return true;
@@ -31,7 +32,7 @@ public class KalkulatorSederhana {
 
     public static boolean validasiRentang(double angka) {
         if (angka < -32768 || angka > 32767) {
-            System.out.println("Angka tidak valid! Angka harus berada dalam rentang -32,768 hingga 32,767.");
+            System.out.println("Error: Angka diluar rentang yang ditentukan!");
             return false;
         }
         return true;
@@ -39,36 +40,35 @@ public class KalkulatorSederhana {
 
     public static double inputAngka(Scanner scanner, String angkaKe) {
         double angka = 0;
-        boolean valid = false;
-        while (!valid) {
             System.out.print("Masukkan angka " + angkaKe + ": ");
-            if (validasiAngka(scanner)) {
+            if (!validasiAngka(scanner)) {
+                System.exit(1); // Keluar dari program jika input tidak valid
+            } else {
                 angka = scanner.nextDouble();
-                if (validasiRentang(angka)) {
-                    valid = true;
-                }
             }
+                if (!validasiRentang(angka)) {
+                    System.exit(1); // Keluar dari program jika diluar range
+                }
+            return angka;
         }
-        return angka;
-    }
+
+    
 
     public static char pilihOperator(Scanner scanner) {
         char operator = ' ';
-        boolean valid = false;
-        do {
             System.out.print("Pilih Operator : (+,-,/,*): ");
             String input = scanner.next();
-            if (input.length() == 1) {
-                operator = input.charAt(0);
-                if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
-                    valid = true;
-                } else {
-                    System.out.println("Error: Operator tidak valid.Harap masukkan +, -, *, atau /.");
-                }
+            if (input.length() != 1) {
+                System.out.println("Error: Inpur operator hanya menerima 1 input! ");
+                System.exit(1); // Keluar dari program jika diluar range
             } else {
-                System.out.println("Error: Harap masukkan 1 karakter operator.");
+                operator = input.charAt(0);
             }
-        } while (!valid);
+                if (operator != '+' && operator != '-' && operator != '*' && operator != '/') {
+                    System.out.println("Error: Operator yang dimasukkan tidak valid!");
+                    System.exit(1); 
+                } 
+                
         return operator;
     }
 
@@ -84,8 +84,10 @@ public class KalkulatorSederhana {
                 return bagi(angkaPertama, angkaKedua);
             case '*':
                 return kali(angkaPertama, angkaKedua);
-            default:
-                throw new IllegalArgumentException("Operator tidak valid.");
+                default:
+                System.out.println("Error: Operator tidak valid!");
+                System.exit(1); // non-zero exit code
+                return 0;
         }
     }
 
