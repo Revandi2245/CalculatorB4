@@ -24,15 +24,19 @@ public class KalkulatorSederhana {
     public static boolean validasiAngka(Scanner scanner) {
         if (!scanner.hasNextDouble()) {
             System.out.println("Error: Masukkan harus berupa angka!");
-            scanner.next(); 
+            scanner.next();
             return false;
         }
         return true;
     }
 
     public static boolean validasiRentang(double angka) {
-        if (angka < -32768 || angka > 32767) {
-            System.out.println("Error: Angka diluar rentang yang ditentukan!");
+        if (angka < -32768) {
+            System.out.println("Error: Angka terlalu kecil! Minimal -32,768.");
+            return false;
+        }
+        if (angka > 32767) {
+            System.out.println("Error: Angka terlalu besar! Maksimal 32,767.");
             return false;
         }
         return true;
@@ -52,7 +56,7 @@ public class KalkulatorSederhana {
             return angka;
         }
 
-    
+
 
     public static Character pilihOperator(Scanner scanner) {
         char operator = ' ';
@@ -73,7 +77,7 @@ public class KalkulatorSederhana {
 
 
 
-    public static double hitung(double angkaPertama, double angkaKedua, char operator) {
+    public static Double hitung(double angkaPertama, double angkaKedua, char operator) {
         switch (operator) {
             case '+':
                 return tambah(angkaPertama, angkaKedua);
@@ -84,9 +88,8 @@ public class KalkulatorSederhana {
             case '*':
                 return kali(angkaPertama, angkaKedua);
                 default:
-                System.out.println("Error: Operator tidak valid!");
-                System.exit(1); // non-zero exit code
-                return 0;
+                System.out.println("Error: Operator yang dimasukkan tidak valid!");
+                return null;
         }
     }
 
