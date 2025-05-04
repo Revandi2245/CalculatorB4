@@ -37,7 +37,7 @@ public class ValidasiAngkaTest{
         // 2. Memanggil fungsi hitung
         boolean hasil = KalkulatorSederhana.validasiAngka(angka);
         // 3. Mengecek jika hasilnya adalah null
-        assertTrue(hasil);
+        assertFalse(hasil);
     }
 
 }
