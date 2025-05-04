@@ -1,29 +1,77 @@
 package com.calculatorb4.app;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class KalkulatorSederhanaTest {
+import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import java.util.Scanner;
+
+public class KalkulatorSederhanaTest {
 
     @Test
-    void testTambah() {
-        assertEquals(10.0, KalkulatorSederhana.tambah(4.0, 6.0));
+    public void testPilihOperatorValidPlus() {
+        Scanner scanner = new Scanner("+");
+        Character result = KalkulatorSederhana.pilihOperator(scanner);
+        assertEquals('+', result);
     }
 
     @Test
-    void testKurang() {
-        assertEquals(2.0, KalkulatorSederhana.kurang(5.0, 3.0));
+    public void testPilihOperatorValidMinus() {
+        Scanner scanner = new Scanner("-");
+        Character result = KalkulatorSederhana.pilihOperator(scanner);
+        assertEquals('-', result);
     }
 
     @Test
-    void testKali() {
-        assertEquals(20.0, KalkulatorSederhana.kali(4.0, 5.0));
+    public void testPilihOperatorInvalidLength() {
+        Scanner scanner = new Scanner("++");
+        Character result = KalkulatorSederhana.pilihOperator(scanner);
+        assertNull(result);
     }
 
     @Test
-    void testBagiNormal() {
-        assertEquals(2.0, KalkulatorSederhana.bagi(10.0, 5.0));
+    public void testPilihOperatorInvalidCharacter() {
+        Scanner scanner = new Scanner("x");
+        Character result = KalkulatorSederhana.pilihOperator(scanner);
+        assertNull(result);
+    }
+    @Test
+    public void testOperatorInvalidLengthMessage() {
+        // Simpan output asli
+        PrintStream originalOut = System.out;
+
+        // Redirect System.out ke ByteArrayOutputStream
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        Scanner scanner = new Scanner("++");
+        Character result = KalkulatorSederhana.pilihOperator(scanner);
+
+        // Kembalikan System.out
+        System.setOut(originalOut);
+
+        String output = outputStream.toString().trim();
+
+        assertNull(result);
+        assertTrue(output.contains("Error: Input operator hanya menerima 1 input!"));
     }
 
+    @Test
+    public void testOperatorInvalidCharacterMessage() {
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
 
+        Scanner scanner = new Scanner("x");
+        Character result = KalkulatorSederhana.pilihOperator(scanner);
+
+        System.setOut(originalOut);
+        String output = outputStream.toString().trim();
+
+        assertNull(result);
+        assertTrue(output.contains("Error: Operator yang dimasukkan tidak Valid!"));
+    }
 }
+
