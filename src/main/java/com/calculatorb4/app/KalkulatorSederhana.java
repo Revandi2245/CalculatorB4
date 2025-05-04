@@ -50,9 +50,7 @@ public class KalkulatorSederhana {
                     return null;
                 }
             return angka;
-        }
-
-    
+        }    
 
     public static Character pilihOperator(Scanner scanner) {
         char operator = ' ';
