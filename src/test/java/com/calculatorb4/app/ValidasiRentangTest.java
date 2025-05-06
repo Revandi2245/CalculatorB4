@@ -11,6 +11,7 @@ import java.io.PrintStream;
 
 public class ValidasiRentangTest{
     @Test
+    // test angka kelebihan
     public void testAngkaKelebihan() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
